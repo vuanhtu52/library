@@ -6,7 +6,8 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: max-content max-content;
+    grid-template-rows: 100px max-content;
+    row-gap: 5px;
 }
 
 .sidebar {
@@ -16,6 +17,7 @@ body {
     grid-template-rows: max-content max-content max-content;
     row-gap: 50px;
     padding: 20px;
+    min-height: 100vh;
 }
 
 .sidebar > :first-child {
@@ -48,3 +50,57 @@ body {
 .sidebar-item > div {
     color: white;
 }
+
+.header {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 2fr 1fr;
+    padding: 20px 40px;
+    box-shadow: 0 5px 5px rgb(0, 0, 0, 0.2);
+}
+
+.search {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 10fr;
+    align-items: center;
+}
+
+.search > img {
+    width: 25px;
+}
+
+.search > input {
+    height: 30px;
+    width: max(90%, 300px);
+    border-radius: 15px;
+    border: none;
+    background-color: #e5e7eb;
+}
+
+.profile {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: max-content max-content;
+    column-gap: 10px;
+    align-items: center;
+    justify-items: center;
+    justify-self: end;
+}
+
+.profile > img {
+    width: 50px;
+    border-radius: 25px;
+    justify-self: end;
+}
+
+.profile > div {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.main-content {
+    background-color: #e5e7eb;
+}
+
+
