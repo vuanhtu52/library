@@ -48,7 +48,7 @@ function createBookCard(book) {
     readToggle.className = "read-toggle";
     const switchWrapper = document.createElement("div");
     switchWrapper.className = "switch-wrapper";
-    const _switch = document.createElement("div");
+    const _switch = document.createElement("label");
     _switch.className = "switch";
     const toggleSwitch = document.createElement("input");
     toggleSwitch.className = "toggle-switch";
