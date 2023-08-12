@@ -52,7 +52,44 @@
         </div>
 
         <!-- Main content section -->
-        <div class="main-content">Main content</div>
+        <div class="main-content">
+            <!-- Books display section -->
+            <div class="books">
+                <div class="books-header">
+                    <div>My Books</div>
+                    <button id="add-book">+ New Book</button>
+                </div>
+                <div class="books-display">
+                    <div class="book">
+                        <div class="stripe"></div>
+                        <div class="book-title">Book title</div>
+                        <div class="book-info">
+                            By: Author <br />
+                            Length: 100 pages
+                        </div>
+                        <div class="read-toggle">
+                            <div class="switch-wrapper">
+                                <label class="switch">
+                                    <input id="toggle-switch" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div>Read</div>
+                        </div>
+                        <div class="book-buttons">
+                            <button id="edit">
+                                <img src="icons/edit.svg" alt="edit icon">
+                            </button>
+                            <button id="delete">
+                                <img src="icons/delete.svg" alt="delete icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Summary column on the right -->
+            <div class="summary">Summary</div>
+        </div>
     </div>
 </body>
 
