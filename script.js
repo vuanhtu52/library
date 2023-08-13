@@ -22,44 +22,28 @@ function createFakeData() {
 }
 
 function createBookCard(book) {
-    const bookCard = document.createElement("div");
-    bookCard.className = "book";
-    // Create a strip at the left side of the card
-    const stripe = document.createElement("div");
-    stripe.className = "stripe";
-    bookCard.appendChild(stripe);
-    // Add title to card
-    const title = document.createElement("div");
-    title.className = "book-title";
+    // Clone the book card template
+    const template = document.querySelector(".book-card");
+    const bookCard = template.content.cloneNode(true);
+    // Add book title
+    const title = bookCard.querySelector(".book-title");
     title.textContent = book.title;
-    bookCard.appendChild(title);
     // Add book info
-    const info = document.createElement("div");
-    info.className = "book-info";
-    const author = document.createElement("div");
-    author.textContent = `By: ${book.author}`;
-    info.appendChild(author);
-    const length = document.createElement("div");
-    length.textContent = `Length: ${book.numPage} pages`;
-    info.appendChild(length);
-    bookCard.appendChild(info);
-    // Add toggle switch
-    const readToggle = document.createElement("div");
-    readToggle.className = "read-toggle";
-    const switchWrapper = document.createElement("div");
-    switchWrapper.className = "switch-wrapper";
-    const _switch = document.createElement("label");
-    _switch.className = "switch";
-    const toggleSwitch = document.createElement("input");
-    toggleSwitch.className = "toggle-switch";
-    toggleSwitch.type = "checkbox";
-    const slider = document.createElement("span");
-    slider.className = "slider round";
-    _switch.appendChild(toggleSwitch);
-    _switch.appendChild(slider);
-    switchWrapper.appendChild(_switch);
-    readToggle.appendChild(switchWrapper);
-    bookCard.appendChild(readToggle);
+    const author = bookCard.querySelector(".book-info > :first-child");
+    author.textContent = `By: ${book.author}`
+    const length = bookCard.querySelector(".book-info > :nth-child(2)");
+    length.textContent = `Length: ${book.numPage} pages`
+    // Add read status
+    const toggle = bookCard.querySelector(".toggle-switch");
+    const status = bookCard.querySelector(".read-toggle > :nth-child(2)");
+    if (book.read) {
+        toggle.checked = true;
+        status.textContent = "Read";
+    } else {
+        toggle.checked = false;
+        status.textContent = "Not read yet";
+    }
+
     return bookCard;
 }
 
