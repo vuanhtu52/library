@@ -109,6 +109,7 @@ body {
 }
 
 .books-header {
+    height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -287,3 +288,30 @@ body {
 }
 
 /* END OF TOGGLE SWITCH */
+
+.summary > div:first-child {
+    height: 40px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.summary-board {
+    background-color: white;
+    padding: 40px 40px;
+    border-radius: 7px;
+    box-shadow: 0 5px 5px rgb(0, 0, 0, 0.2);
+    font-size: 20px;
+    font-weight: 900;
+    color: #a16207;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: max-content max-content max-content;
+    row-gap: 20px;
+}
+
+.summary-board > :nth-child(even) {
+    justify-self: end;
+}

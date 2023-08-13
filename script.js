@@ -57,3 +57,15 @@ function displayBooks() {
 createFakeData();
 displayBooks();
 
+// Display the summary section
+const totalBooks = document.querySelector(".summary-board > :nth-child(2)");
+totalBooks.textContent = `${myLibrary.length}`;
+
+const readBooks = document.querySelector(".summary-board > :nth-child(4)");
+const readBooksCount = myLibrary.filter(book => book.read).length; 
+readBooks.textContent = `${readBooksCount}`;
+
+const unreadBooks = document.querySelector(".summary-board > :nth-child(6)");
+const unreadBooksCount = myLibrary.filter(book => !book.read).length; 
+unreadBooks.textContent = `${unreadBooksCount}`;
+
