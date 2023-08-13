@@ -69,3 +69,21 @@ const unreadBooks = document.querySelector(".summary-board > :nth-child(6)");
 const unreadBooksCount = myLibrary.filter(book => !book.read).length; 
 unreadBooks.textContent = `${unreadBooksCount}`;
 
+// Open a popup to add new book
+const addBookButton = document.querySelector("#add-book");
+addBookButton.addEventListener("click", () => {
+    const newBookPopup = document.querySelector("#new-book-popup");
+    newBookPopup.showModal();
+});
+
+const addButton = document.querySelector("#new-book-form .add");
+addButton.addEventListener("click", event => {
+    event.preventDefault();
+})
+
+const cancelNewBookButton = document.querySelector("#new-book-form .cancel");
+cancelNewBookButton.addEventListener("click", event => {
+    event.preventDefault();
+    const newBookPopup = document.querySelector("#new-book-popup");
+    newBookPopup.close();
+})

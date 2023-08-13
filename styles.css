@@ -315,3 +315,80 @@ body {
 .summary-board > :nth-child(even) {
     justify-self: end;
 }
+
+#new-book-popup {
+    padding: 20px 40px;
+    border-radius: 10px;
+    border: 2px solid #a16207;
+}
+
+#new-book-popup::backdrop {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+#new-book-popup > :first-child {
+    font-size: 20px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#new-book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#new-book-form > .form-field:nth-child(-n+3) {
+    display: flex;
+    flex-direction: column;
+}
+
+#new-book-form > .form-field:nth-child(-n+3) > input {
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #E5E7EB;
+}
+
+#new-book-form > .form-field:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#new-book-form > .form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#new-book-form button {
+    font-size: 20px;
+    width: 100px;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+
+#new-book-form button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#new-book-form button:active {
+    transform: translateY(2px);
+}
+
+#new-book-form button.add {
+    background-color: #a16207;
+    color: white;
+    border: none;
+}
+
+#new-book-form button.cancel {
+    background-color: white;
+    color: #a16207;
+    border: 1px solid #a16207;
+}
+
