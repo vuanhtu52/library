@@ -117,6 +117,15 @@ function validateForm() {
     if (lengthInput.className === "invalid") {
         validForm = false;
     }
+    
+    // Check if user picked an option for read status
+    const yesInput = document.querySelector("#yes");
+    const noInput = document.querySelector("#no");
+    if (!yesInput.checked && !noInput.checked) {
+        const readStatusInputError = document.querySelector("#new-book-form > .form-field:nth-child(4) > span");
+        readStatusInputError.textContent = "Please pick an option.";
+        validForm = false;
+    }
 
     if (validForm) {
         // Add new book
@@ -168,6 +177,11 @@ function validateLength(lengthInput) {
         lengthInput.className = "valid";
         lengthInputError.textContent = "";
     }
+}
+
+function validateReadStatus() {
+    const readStatusInputError = document.querySelector("#new-book-form > .form-field:nth-child(4) > span");
+    readStatusInputError.textContent = "";
 }
 
 
@@ -234,10 +248,18 @@ authorInput.addEventListener("input", () => {
     validateAuthor(authorInput);
 });
 
-// Validate lenth when user is typing
+// Validate length when user is typing
 const lengthInput = document.querySelector("#length");
 lengthInput.addEventListener("input", () => {
     validateLength(lengthInput);
+});
+
+// Detect when user clicks the radio buttons
+const radios = document.querySelectorAll("#yes, #no");
+radios.forEach(radio => {
+    radio.addEventListener("click", () => {
+        validateReadStatus();
+    });
 });
 
 
