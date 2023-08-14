@@ -1,5 +1,3 @@
-const booksDisplayDiv = document.querySelector(".books-display");
-
 let myLibrary = [];
 
 function Book(author, title, numPage, read) {
@@ -10,12 +8,12 @@ function Book(author, title, numPage, read) {
   this.read = read;
 }
 
-function addBookToLibrary() {
-  // do stuff here
+function addBookToLibrary(book) {
+    myLibrary.push(book);
 }
 
 function createFakeData() {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 3; i++) {
         const book = new Book(`Author ${i}`, `Title ${i}`, 100, false);
         myLibrary.push(book);
     }
@@ -48,6 +46,12 @@ function createBookCard(book) {
 }
 
 function displayBooks() {
+    //Remove all current books first
+    const booksDisplayDiv = document.querySelector(".books-display");
+    while (booksDisplayDiv.lastElementChild && booksDisplayDiv.lastElementChild.className !== "book-card") {
+        booksDisplayDiv.removeChild(booksDisplayDiv.lastElementChild);
+      }
+    //Display books
     for (const book of myLibrary) {
         const bookCard = createBookCard(book);
         booksDisplayDiv.appendChild(bookCard);
@@ -127,9 +131,7 @@ function validateForm() {
         validForm = false;
     }
 
-    if (validForm) {
-        // Add new book
-    }
+    return validForm;
 }
 
 function validateTitle(titleInput) {
@@ -225,7 +227,19 @@ newBookPopup.addEventListener("close", () => {
 const addButton = document.querySelector("#new-book-form .add");
 addButton.addEventListener("click", event => {
     event.preventDefault();
-    validateForm();
+    let isValidForm = validateForm();
+    if (isValidForm) {
+        // Add new book
+        const authorInput = document.querySelector("#author");
+        const titleInput = document.querySelector("#title");
+        const lengthInput = document.querySelector("#length");
+        const yesInput = document.querySelector("#yes");
+        const book = new Book(authorInput.value, titleInput.value, parseInt(lengthInput.value), yesInput.checked);
+        addBookToLibrary(book);
+        const newBookPopup = document.querySelector("#new-book-popup");
+        newBookPopup.close();
+        displayBooks(myLibrary);
+    }
 })
 
 // When user clicks cancel button in new book form
