@@ -74,16 +74,31 @@ const addBookButton = document.querySelector("#add-book");
 addBookButton.addEventListener("click", () => {
     const newBookPopup = document.querySelector("#new-book-popup");
     newBookPopup.showModal();
+    // Prevent scrolling when popup is open
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
 });
 
+// Detect when popup is closed
+const newBookPopup = document.querySelector("#new-book-popup");
+newBookPopup.addEventListener("close", () => {
+    // Enable scrolling again
+    const body = document.querySelector("body");
+    body.style.overflow = "auto";
+});
+
+
+// When user clicks add button in new book form
 const addButton = document.querySelector("#new-book-form .add");
 addButton.addEventListener("click", event => {
     event.preventDefault();
 })
 
+// When user clicks cancel button in new book form
 const cancelNewBookButton = document.querySelector("#new-book-form .cancel");
 cancelNewBookButton.addEventListener("click", event => {
     event.preventDefault();
     const newBookPopup = document.querySelector("#new-book-popup");
     newBookPopup.close();
 })
+

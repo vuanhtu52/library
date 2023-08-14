@@ -322,9 +322,13 @@ body {
     border: 2px solid #a16207;
 }
 
-#new-book-popup::backdrop {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* body {
+    overflow: hidden;
+} */
 
 #new-book-popup > :first-child {
     font-size: 20px;
