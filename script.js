@@ -85,6 +85,14 @@ function validateForm() {
         validForm = false;
     }
 
+    // Check if author is empty
+    const authorInput = document.querySelector("#author");
+    if (authorInput.value === "") {
+        authorInput.className = "invalid";
+        const authorInputError = document.querySelector(`#${authorInput.id} + span.error`);
+        authorInputError.textContent = "Please fill out this field";
+    }
+
     if (validForm) {
         // Add new book
     }
@@ -102,6 +110,17 @@ function validateTitle(titleInput) {
     } else {
         titleInput.className = "valid";
         titleInputError.textContent = "";
+    }
+}
+
+function validateAuthor(authorInput) {
+    const authorInputError = document.querySelector(`#${authorInput.id} + span.error`);
+    if (authorInput.value === "") {
+        authorInput.className = "invalid";
+        authorInputError.textContent = "Please fill out this field.";
+    } else {
+        authorInput.className = "valid";
+        authorInputError.textContent = "";
     }
 }
 
@@ -161,6 +180,12 @@ cancelNewBookButton.addEventListener("click", event => {
 const titleInput = document.querySelector("#title");
 titleInput.addEventListener("input", () => {
     validateTitle(titleInput);
+});
+
+// Validate author when user is typing
+const authorInput = document.querySelector("#author");
+authorInput.addEventListener("input", () => {
+    validateAuthor(authorInput);
 });
 
 
