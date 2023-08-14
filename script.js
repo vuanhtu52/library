@@ -54,6 +54,23 @@ function displayBooks() {
     }
 }
 
+function resetNewBookForm() {
+    // Reset title
+    const titleInput = document.querySelector("#title");
+    titleInput.value = "";
+    // Reset author
+    const authorInput = document.querySelector("#author");
+    authorInput.value = "";
+    // Reset length
+    const lengthInput = document.querySelector("#length");
+    lengthInput.value = "";
+    // Reset read status question
+    const yesInput = document.querySelector("#yes");
+    yesInput.checked = false;
+    const noInput = document.querySelector("#no");
+    noInput.checked = false;
+}
+
 createFakeData();
 displayBooks();
 
@@ -77,6 +94,8 @@ addBookButton.addEventListener("click", () => {
     // Prevent scrolling when popup is open
     const body = document.querySelector("body");
     body.style.overflow = "hidden";
+    // Reset the fields
+    resetNewBookForm();
 });
 
 // Detect when popup is closed
