@@ -1,11 +1,11 @@
 let myLibrary = [];
 
 function Book(author, title, numPage, read) {
-  // the constructor...
-  this.author = author;
-  this.title = title;
-  this.numPage = numPage;
-  this.read = read;
+    // the constructor...
+    this.author = author;
+    this.title = title;
+    this.numPage = numPage;
+    this.read = read;
 }
 
 function addBookToLibrary(book) {
@@ -50,7 +50,7 @@ function displayBooks() {
     const booksDisplayDiv = document.querySelector(".books-display");
     while (booksDisplayDiv.lastElementChild && booksDisplayDiv.lastElementChild.className !== "book-card") {
         booksDisplayDiv.removeChild(booksDisplayDiv.lastElementChild);
-      }
+    }
     //Display books
     for (const book of myLibrary) {
         const bookCard = createBookCard(book);
@@ -111,7 +111,7 @@ function validateForm() {
     }
 
     // Check if length is empty
-    const lengthInput= document.querySelector("#length");
+    const lengthInput = document.querySelector("#length");
     if (lengthInput.value === "") {
         lengthInput.className = "invalid";
         const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`);
@@ -121,7 +121,7 @@ function validateForm() {
     if (lengthInput.className === "invalid") {
         validForm = false;
     }
-    
+
     // Check if user picked an option for read status
     const yesInput = document.querySelector("#yes");
     const noInput = document.querySelector("#no");
@@ -170,7 +170,7 @@ function isValidLength(text) {
 }
 
 function validateLength(lengthInput) {
-    const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`); 
+    const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`);
     if (lengthInput.value === "" || !isValidLength(lengthInput.value)) {
         lengthInput.className = "invalid";
         lengthInputError.textContent = "Please provide a positive number.";
@@ -186,21 +186,24 @@ function validateReadStatus() {
     readStatusInputError.textContent = "";
 }
 
+function updateSummary() {
+    // Display the summary section
+    const totalBooks = document.querySelector(".summary-board > :nth-child(2)");
+    totalBooks.textContent = `${myLibrary.length}`;
+
+    const readBooks = document.querySelector(".summary-board > :nth-child(4)");
+    const readBooksCount = myLibrary.filter(book => book.read).length;
+    readBooks.textContent = `${readBooksCount}`;
+
+    const unreadBooks = document.querySelector(".summary-board > :nth-child(6)");
+    const unreadBooksCount = myLibrary.filter(book => !book.read).length;
+    unreadBooks.textContent = `${unreadBooksCount}`;
+}
+
 
 createFakeData();
 displayBooks();
-
-// Display the summary section
-const totalBooks = document.querySelector(".summary-board > :nth-child(2)");
-totalBooks.textContent = `${myLibrary.length}`;
-
-const readBooks = document.querySelector(".summary-board > :nth-child(4)");
-const readBooksCount = myLibrary.filter(book => book.read).length; 
-readBooks.textContent = `${readBooksCount}`;
-
-const unreadBooks = document.querySelector(".summary-board > :nth-child(6)");
-const unreadBooksCount = myLibrary.filter(book => !book.read).length; 
-unreadBooks.textContent = `${unreadBooksCount}`;
+updateSummary();
 
 // Open a popup to add new book
 const addBookButton = document.querySelector("#add-book");
@@ -239,6 +242,7 @@ addButton.addEventListener("click", event => {
         const newBookPopup = document.querySelector("#new-book-popup");
         newBookPopup.close();
         displayBooks(myLibrary);
+        updateSummary();
     }
 })
 
