@@ -57,13 +57,22 @@ function displayBooks() {
 function resetNewBookForm() {
     // Reset title
     const titleInput = document.querySelector("#title");
+    titleInput.className = "";
     titleInput.value = "";
+    const titleInputError = document.querySelector(`#${titleInput.id} + span.error`);
+    titleInputError.textContent = "";
     // Reset author
     const authorInput = document.querySelector("#author");
+    authorInput.className = "";
     authorInput.value = "";
+    const authorInputError = document.querySelector(`#${authorInput.id} + span.error`);
+    authorInputError.textContent = "";
     // Reset length
     const lengthInput = document.querySelector("#length");
+    lengthInput.className = "";
     lengthInput.value = "";
+    const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`);
+    lengthInputError.textContent = "";
     // Reset read status question
     const yesInput = document.querySelector("#yes");
     yesInput.checked = false;
@@ -91,6 +100,22 @@ function validateForm() {
         authorInput.className = "invalid";
         const authorInputError = document.querySelector(`#${authorInput.id} + span.error`);
         authorInputError.textContent = "Please fill out this field";
+    }
+    // Check if author has invalid value
+    if (authorInput.className === "invalid") {
+        validForm = false;
+    }
+
+    // Check if length is empty
+    const lengthInput= document.querySelector("#length");
+    if (lengthInput.value === "") {
+        lengthInput.className = "invalid";
+        const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`);
+        lengthInputError.textContent = "Please provide a positive number.";
+    }
+    // Check if length is an invalid number
+    if (lengthInput.className === "invalid") {
+        validForm = false;
     }
 
     if (validForm) {
@@ -121,6 +146,27 @@ function validateAuthor(authorInput) {
     } else {
         authorInput.className = "valid";
         authorInputError.textContent = "";
+    }
+}
+
+function isValidLength(text) {
+    for (let i = 0; i < text.length; i++) {
+        if (!/\d/.test(text.charAt(i))) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function validateLength(lengthInput) {
+    const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`); 
+    if (lengthInput.value === "" || !isValidLength(lengthInput.value)) {
+        lengthInput.className = "invalid";
+        lengthInputError.textContent = "Please provide a positive number.";
+    }
+    else {
+        lengthInput.className = "valid";
+        lengthInputError.textContent = "";
     }
 }
 
@@ -186,6 +232,12 @@ titleInput.addEventListener("input", () => {
 const authorInput = document.querySelector("#author");
 authorInput.addEventListener("input", () => {
     validateAuthor(authorInput);
+});
+
+// Validate lenth when user is typing
+const lengthInput = document.querySelector("#length");
+lengthInput.addEventListener("input", () => {
+    validateLength(lengthInput);
 });
 
 
