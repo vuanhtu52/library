@@ -396,3 +396,22 @@ dialog::backdrop {
     border: 1px solid #a16207;
 }
 
+#new-book-form > .form-field:nth-child(-n+3) > input:focus {
+    outline: none;
+    border: 1px solid grey;
+    box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1);
+}
+
+#new-book-form > .form-field:nth-child(-n+3) > input.valid {
+    border: 1px solid green;
+}
+
+#new-book-form > .form-field:nth-child(-n+3) > input.invalid {
+    border: 1px solid red;
+}
+
+/* Style for error messages */
+.error {
+    color: red;
+}
+

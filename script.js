@@ -71,6 +71,41 @@ function resetNewBookForm() {
     noInput.checked = false;
 }
 
+function validateForm() {
+    let validForm = true;
+    // Check if title is empty
+    const titleInput = document.querySelector("#title");
+    if (titleInput.value === "") {
+        titleInput.className = "invalid";
+        const titleInputError = document.querySelector(`#${titleInput.id} + span.error`);
+        titleInputError.textContent = "Please fill out this field";
+    }
+    // Check if title has invalid value
+    if (titleInput.className === "invalid") {
+        validForm = false;
+    }
+
+    if (validForm) {
+        // Add new book
+    }
+}
+
+function validateTitle(titleInput) {
+    const allTitles = myLibrary.map(book => book.title);
+    const titleInputError = document.querySelector(`#${titleInput.id} + span.error`);
+    if (allTitles.includes(titleInput.value)) {
+        titleInput.className = "invalid";
+        titleInputError.textContent = "This book already exists.";
+    } else if (titleInput.value === "") {
+        titleInput.className = "invalid";
+        titleInputError.textContent = "Please fill out this field.";
+    } else {
+        titleInput.className = "valid";
+        titleInputError.textContent = "";
+    }
+}
+
+
 createFakeData();
 displayBooks();
 
@@ -111,6 +146,7 @@ newBookPopup.addEventListener("close", () => {
 const addButton = document.querySelector("#new-book-form .add");
 addButton.addEventListener("click", event => {
     event.preventDefault();
+    validateForm();
 })
 
 // When user clicks cancel button in new book form
@@ -120,4 +156,12 @@ cancelNewBookButton.addEventListener("click", event => {
     const newBookPopup = document.querySelector("#new-book-popup");
     newBookPopup.close();
 })
+
+// Validate title when user is typing
+const titleInput = document.querySelector("#title");
+titleInput.addEventListener("input", () => {
+    validateTitle(titleInput);
+});
+
+
 
