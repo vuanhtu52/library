@@ -78,10 +78,10 @@
                                 <div>Not read yet</div>
                             </div>
                             <div class="book-buttons">
-                                <button id="edit">
+                                <button class="edit">
                                     <img src="icons/edit.svg" alt="edit icon">
                                 </button>
-                                <button id="delete">
+                                <button class="delete">
                                     <img src="icons/delete.svg" alt="delete icon">
                                 </button>
                             </div>
@@ -139,6 +139,46 @@
             </div>
             <div class="form-buttons">
                 <button class="add"><div>Add</div></button>
+                <button class="cancel">Cancel</button>
+            </div> 
+        </form>
+    </dialog>
+
+     <!-- The popup form to edit book -->
+     <dialog id="edit-book-popup">
+        <div>Edit Book</div>
+        <form action="#" method="post" id="edit-book-form" novalidate>
+            <div class="form-field">
+                <label for="title">Title*</label>
+                <input type="text" id="title-edit">
+                <span class="error" aria-live="polite"></span>
+            </div>
+            <div class="form-field">
+                <label for="author">Author*</label>
+                <input type="text" id="author-edit">
+                <span class="error" aria-live="polite"></span>
+            </div>
+            <div class="form-field">
+                <label for="length">Length*</label>
+                <input type="number" id="length-edit" min="1">
+                <span class="error" aria-live="polite"></span>
+            </div>
+            <div class="form-field">
+                <div>Have you read the book?*</div>
+                <span class="error" aria-live="polite"></span>
+                <div>
+                    <div>
+                        <input type="radio" id="yes-edit" name="read-status" value="yes">
+                        <label for="yes">Yes</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="no-edit" name="read-status" value="no">
+                        <label for="yes">No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button class="update"><div>Update</div></button>
                 <button class="cancel">Cancel</button>
             </div> 
         </form>

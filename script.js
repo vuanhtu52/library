@@ -280,5 +280,29 @@ radios.forEach(radio => {
     });
 });
 
+// When user clicks on edit button on a bookcard
+const editButtons = document.querySelectorAll(".edit");
+editButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const editBookPopup = document.querySelector("#edit-book-popup");
+        editBookPopup.showModal();
+        // Prevent scrolling when popup is open
+        const body = document.querySelector("body");
+        body.style.overflow = "hidden";
+    });
+});
+
+// When user clicks update button in edit book form
+const updateButton = document.querySelector("#edit-book-form .update");
+updateButton.addEventListener("click", event => {
+    event.preventDefault();
+})
+
+// When user clicks cancel button in edit book form
+const cancelUpdateButton = document.querySelector("#edit-book-form .cancel");
+cancelUpdateButton.addEventListener("click", event => {
+    event.preventDefault();
+})
+
 
 

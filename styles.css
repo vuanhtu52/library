@@ -316,7 +316,8 @@ body {
     justify-self: end;
 }
 
-#new-book-popup {
+/* FORMS */
+#new-book-popup, #edit-book-popup {
     padding: 20px 40px;
     border-radius: 10px;
     border: 2px solid #a16207;
@@ -326,11 +327,7 @@ dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* body {
-    overflow: hidden;
-} */
-
-#new-book-popup > :first-child {
+#new-book-popup > :first-child, #edit-book-popup > :first-child {
     font-size: 20px;
     font-weight: 900;
     display: flex;
@@ -338,75 +335,75 @@ dialog::backdrop {
     margin-bottom: 20px;
 }
 
-#new-book-form {
+#new-book-form, #edit-book-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-#new-book-form > .form-field:nth-child(-n+3) {
+#new-book-form > .form-field:nth-child(-n+3), #edit-book-form > .form-field:nth-child(-n+3) {
     display: flex;
     flex-direction: column;
 }
 
-#new-book-form > .form-field:nth-child(-n+3) > input {
+#new-book-form > .form-field:nth-child(-n+3) > input, #edit-book-form > .form-field:nth-child(-n+3) > input {
     width: 300px;
     height: 30px;
     border-radius: 5px;
     border: 1px solid #E5E7EB;
 }
 
-#new-book-form > .form-field:nth-child(4) {
+#new-book-form > .form-field:nth-child(4), #edit-book-form > .form-field:nth-child(4) {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-#new-book-form > .form-buttons {
+#new-book-form > .form-buttons, #edit-book-form > .form-buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-#new-book-form button {
+#new-book-form button, #edit-book-form button {
     font-size: 20px;
     width: 100px;
     padding: 5px 0;
     border-radius: 5px;
 }
 
-#new-book-form button:hover {
+#new-book-form button:hover, #edit-book-form button:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
 
-#new-book-form button:active {
+#new-book-form button:active, #edit-book-form button:active {
     transform: translateY(2px);
 }
 
-#new-book-form button.add {
+#new-book-form button.add, #edit-book-form button.update {
     background-color: #a16207;
     color: white;
     border: none;
 }
 
-#new-book-form button.cancel {
+#new-book-form button.cancel, #edit-book-form button.cancel {
     background-color: white;
     color: #a16207;
     border: 1px solid #a16207;
 }
 
-#new-book-form > .form-field:nth-child(-n+3) > input:focus {
+#new-book-form > .form-field:nth-child(-n+3) > input:focus, #edit-book-form > .form-field:nth-child(-n+3) > input:focus {
     outline: none;
     border: 1px solid grey;
     box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1);
 }
 
-#new-book-form > .form-field:nth-child(-n+3) > input.valid {
+#new-book-form > .form-field:nth-child(-n+3) > input.valid, #edit-book-form > .form-field:nth-child(-n+3) > input.valid {
     border: 1px solid green;
 }
 
-#new-book-form > .form-field:nth-child(-n+3) > input.invalid {
+#new-book-form > .form-field:nth-child(-n+3) > input.invalid, #edit-book-form > .form-field:nth-child(-n+3) > input.invalid {
     border: 1px solid red;
 }
 
@@ -414,4 +411,5 @@ dialog::backdrop {
 .error {
     color: red;
 }
+/* END OF FORMS */
 
