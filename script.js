@@ -302,6 +302,8 @@ updateButton.addEventListener("click", event => {
 const cancelUpdateButton = document.querySelector("#edit-book-form .cancel");
 cancelUpdateButton.addEventListener("click", event => {
     event.preventDefault();
+    const editBookPopup = document.querySelector("#edit-book-popup");
+    editBookPopup.close();
 })
 
 
