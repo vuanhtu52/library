@@ -1,5 +1,6 @@
 let myLibrary = [];
 let bookTitleToUpdate = "";
+let bookTitleToDelete = "";
 
 function Book(author, title, numPage, read) {
     // the constructor...
@@ -27,6 +28,10 @@ function updateBookToLibrary() {
             return book;
         }
     });
+}
+
+function deleteBookFromLibrary() {
+    myLibrary = myLibrary.filter(book => book.title !== bookTitleToDelete);
 }
 
 function createFakeData() {
@@ -76,9 +81,13 @@ function setUpDeleteButton(bookCard) {
     // When user clicks on delete button
     const deleteButton = bookCard.querySelector(".delete");
     deleteButton.addEventListener("click", () => {
-        console.log("hello");
         const deleteBookPopup = document.querySelector("#delete-book-popup");
         deleteBookPopup.showModal();
+        // Save the current book's title to delete later
+        bookTitleToDelete = bookCard.querySelector(".book-title").textContent;
+        // Show the book's title in the popup
+        const titleDiv = document.querySelector("#delete-book-popup > :nth-child(2)");
+        titleDiv.textContent = bookTitleToDelete;
     });
 }
 
@@ -447,6 +456,16 @@ cancelUpdateButton.addEventListener("click", event => {
     const editBookPopup = document.querySelector("#edit-book-popup");
     editBookPopup.close();
 })
+
+// When user clicks delete button in delete popup
+const deleteButton = document.querySelector("#delete-book-popup .delete");
+deleteButton.addEventListener("click", () => {
+    deleteBookFromLibrary();
+    const deleteBookPopup = document.querySelector("#delete-book-popup");
+    deleteBookPopup.close();
+    displayBooks(myLibrary);
+    updateSummary();
+});
 
 
 
