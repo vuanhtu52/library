@@ -29,6 +29,7 @@ function setUpEditButton(bookCard) {
         const body = document.querySelector("body");
         body.style.overflow = "hidden";
         // Populate form with book's information
+        resetForm("edit");
         populateForm(bookCard);
     });
 }
@@ -74,25 +75,45 @@ function displayBooks() {
     }
 }
 
-function resetForm() {
+function resetForm(formType) {
     // Reset title
-    const titleInput = document.querySelector("#title");
+    let titleInput;
+    if (formType === "add") {
+        titleInput = document.querySelector("#title");
+    } else if (formType === "edit") {
+        titleInput = document.querySelector("#title-edit");
+    }
     titleInput.className = "";
     titleInput.value = "";
     const titleInputError = document.querySelector(`#${titleInput.id} + span.error`);
     titleInputError.textContent = "";
+
     // Reset author
-    const authorInput = document.querySelector("#author");
+    // const authorInput = document.querySelector("#author");
+    let authorInput;
+    if (formType === "add") {
+        authorInput = document.querySelector("#author");
+    } else if (formType === "edit") {
+        authorInput = document.querySelector("#author-edit");
+    }
     authorInput.className = "";
     authorInput.value = "";
     const authorInputError = document.querySelector(`#${authorInput.id} + span.error`);
     authorInputError.textContent = "";
+
     // Reset length
-    const lengthInput = document.querySelector("#length");
+    // const lengthInput = document.querySelector("#length");
+    let lengthInput;
+    if (formType === "add") {
+        lengthInput = document.querySelector("#length");
+    } else if (formType === "edit") {
+        lengthInput = document.querySelector("#length-edit");
+    }
     lengthInput.className = "";
     lengthInput.value = "";
     const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`);
     lengthInputError.textContent = "";
+
     // Reset read status question
     const yesInput = document.querySelector("#yes");
     yesInput.checked = false;
@@ -279,8 +300,8 @@ addBookButton.addEventListener("click", () => {
     // Prevent scrolling when popup is open
     const body = document.querySelector("body");
     body.style.overflow = "hidden";
-    // Reset the fields
-    resetForm();
+    // Reset the fields and error messages
+    resetForm("add");
 });
 
 // Detect when popup is closed
