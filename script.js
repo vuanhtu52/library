@@ -53,6 +53,25 @@ function setUpEditButton(bookCard) {
     });
 }
 
+function setUpToggle(bookCard) {
+    // When user clicks on the toggle on book card
+    const toggle = bookCard.querySelector(".toggle-switch");
+    toggle.addEventListener("change", () => {
+        // Get the title of the current book
+        const bookCard = toggle.parentNode.parentNode.parentNode.parentNode;
+        const title = bookCard.querySelector(".book-title").textContent;
+        // Update read status for the current book
+        myLibrary = myLibrary.map(book => {
+            if (book.title === title) {
+                return {...book, read: toggle.checked};
+            } else {
+                return book;
+            }
+        });
+        updateSummary();
+    });
+}
+
 function createBookCard(book) {
     // Clone the book card template
     const template = document.querySelector(".book-card");
@@ -77,6 +96,8 @@ function createBookCard(book) {
     }
     // Set up edit button
     setUpEditButton(bookCard.lastElementChild);
+    // Set up toggle
+    setUpToggle(bookCard.lastElementChild);
 
     return bookCard;
 }
