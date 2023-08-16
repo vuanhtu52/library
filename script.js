@@ -19,6 +19,20 @@ function createFakeData() {
     }
 }
 
+function setUpEditButton(bookCard) {
+    // When user clicks on edit button on a bookcard
+    const editButton = bookCard.querySelector(".edit");
+    editButton.addEventListener("click", () => {
+        const editBookPopup = document.querySelector("#edit-book-popup");
+        editBookPopup.showModal();
+        // Prevent scrolling when popup is open
+        const body = document.querySelector("body");
+        body.style.overflow = "hidden";
+        // Populate form with book's information
+        populateForm(bookCard);
+    });
+}
+
 function createBookCard(book) {
     // Clone the book card template
     const template = document.querySelector(".book-card");
@@ -41,6 +55,8 @@ function createBookCard(book) {
         toggle.checked = false;
         status.textContent = "Not read yet";
     }
+    // Set up edit button
+    setUpEditButton(bookCard.lastElementChild);
 
     return bookCard;
 }
@@ -84,10 +100,15 @@ function resetNewBookForm() {
     noInput.checked = false;
 }
 
-function validateForm() {
+function validateForm(formType) {
     let validForm = true;
     // Check if title is empty
-    const titleInput = document.querySelector("#title");
+    let titleInput;
+    if (formType === "add") {
+        titleInput = document.querySelector("#title");
+    } else if (formType === "edit") {
+        titleInput = document.querySelector("#title-edit");
+    }
     if (titleInput.value === "") {
         titleInput.className = "invalid";
         const titleInputError = document.querySelector(`#${titleInput.id} + span.error`);
@@ -99,7 +120,13 @@ function validateForm() {
     }
 
     // Check if author is empty
-    const authorInput = document.querySelector("#author");
+    // const authorInput = document.querySelector("#author");
+    let authorInput;
+    if (formType === "add") {
+        authorInput = document.querySelector("#author");
+    } else if (formType === "edit") {
+        authorInput = document.querySelector("#author-edit");
+    }
     if (authorInput.value === "") {
         authorInput.className = "invalid";
         const authorInputError = document.querySelector(`#${authorInput.id} + span.error`);
@@ -111,7 +138,12 @@ function validateForm() {
     }
 
     // Check if length is empty
-    const lengthInput = document.querySelector("#length");
+    let lengthInput;
+    if (formType === "add") {
+        lengthInput = document.querySelector("#length");
+    } else if (formType === "edit") {
+        lengthInput = document.querySelector("#length-edit");
+    }
     if (lengthInput.value === "") {
         lengthInput.className = "invalid";
         const lengthInputError = document.querySelector(`#${lengthInput.id} + span.error`);
@@ -123,8 +155,18 @@ function validateForm() {
     }
 
     // Check if user picked an option for read status
-    const yesInput = document.querySelector("#yes");
-    const noInput = document.querySelector("#no");
+    let yesInput;
+    if (formType === "add") {
+        yesInput = document.querySelector("#yes");
+    } else if (formType === "edit") {
+        yesInput = document.querySelector("#yes-edit");
+    }
+    let noInput;
+    if (formType === "add") {
+        noInput = document.querySelector("#no");
+    } else if (formType === "edit") {
+        noInput = document.querySelector("#no-edit");
+    }
     if (!yesInput.checked && !noInput.checked) {
         const readStatusInputError = document.querySelector("#new-book-form > .form-field:nth-child(4) > span");
         readStatusInputError.textContent = "Please pick an option.";
@@ -200,6 +242,30 @@ function updateSummary() {
     unreadBooks.textContent = `${unreadBooksCount}`;
 }
 
+function populateForm(bookCard) {
+    // Get the current book's title
+    const currentTitle = bookCard.querySelector(".book-title").textContent;
+    // Get the corresponding book object with the title
+    const currentBook = myLibrary.filter(book => book.title === currentTitle)[0];
+    // Populate title
+    const title = document.querySelector("#title-edit");
+    title.value = currentBook.title;
+    // Populate author
+    const author = document.querySelector("#author-edit");
+    author.value = currentBook.author;
+    // Populate length
+    const length = document.querySelector("#length-edit");
+    length.value = currentBook.numPage.toString();
+    // Select read status
+    const yesInput = document.querySelector("#yes-edit");
+    const noInput = document.querySelector("#no-edit");
+    if (currentBook.read) {
+        yesInput.checked = true;
+    } else {
+        noInput.checked = true;
+    }
+}
+
 
 createFakeData();
 displayBooks();
@@ -230,7 +296,7 @@ newBookPopup.addEventListener("close", () => {
 const addButton = document.querySelector("#new-book-form .add");
 addButton.addEventListener("click", event => {
     event.preventDefault();
-    let isValidForm = validateForm();
+    let isValidForm = validateForm("add");
     if (isValidForm) {
         // Add new book
         const authorInput = document.querySelector("#author");
@@ -255,15 +321,19 @@ cancelNewBookButton.addEventListener("click", event => {
 })
 
 // Validate title when user is typing
-const titleInput = document.querySelector("#title");
-titleInput.addEventListener("input", () => {
-    validateTitle(titleInput);
+const titleInputs = document.querySelectorAll("#title, #title-edit");
+titleInputs.forEach(titleInput => {
+    titleInput.addEventListener("input", () => {
+        validateTitle(titleInput);
+    });
 });
 
 // Validate author when user is typing
-const authorInput = document.querySelector("#author");
-authorInput.addEventListener("input", () => {
-    validateAuthor(authorInput);
+const authorInputs = document.querySelectorAll("#author, #author-edit");
+authorInputs.forEach(authorInput => {
+    authorInput.addEventListener("input", () => {
+        validateAuthor(authorInput);
+    });
 });
 
 // Validate length when user is typing
@@ -280,22 +350,11 @@ radios.forEach(radio => {
     });
 });
 
-// When user clicks on edit button on a bookcard
-const editButtons = document.querySelectorAll(".edit");
-editButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const editBookPopup = document.querySelector("#edit-book-popup");
-        editBookPopup.showModal();
-        // Prevent scrolling when popup is open
-        const body = document.querySelector("body");
-        body.style.overflow = "hidden";
-    });
-});
-
 // When user clicks update button in edit book form
 const updateButton = document.querySelector("#edit-book-form .update");
 updateButton.addEventListener("click", event => {
     event.preventDefault();
+    let isValidForm = validateForm("edit");
 })
 
 // When user clicks cancel button in edit book form
