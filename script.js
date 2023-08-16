@@ -337,9 +337,11 @@ authorInputs.forEach(authorInput => {
 });
 
 // Validate length when user is typing
-const lengthInput = document.querySelector("#length");
-lengthInput.addEventListener("input", () => {
-    validateLength(lengthInput);
+const lengthInputs = document.querySelectorAll("#length, #length-edit");
+lengthInputs.forEach(lengthInput => {
+    lengthInput.addEventListener("input", () => {
+        validateLength(lengthInput);
+    });
 });
 
 // Detect when user clicks the radio buttons
