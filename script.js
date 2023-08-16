@@ -1,4 +1,5 @@
 let myLibrary = [];
+let bookTitleToUpdate = "";
 
 function Book(author, title, numPage, read) {
     // the constructor...
@@ -10,6 +11,22 @@ function Book(author, title, numPage, read) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
+}
+
+function updateBookToLibrary() {
+    // Get the new book's information
+    const author = document.querySelector("#author-edit");
+    const title = document.querySelector("#title-edit");
+    const length = document.querySelector("#length-edit");
+    const yesInput = document.querySelector("#yes-edit");
+    // Update book
+    myLibrary = myLibrary.map(book => {
+        if (book.title === bookTitleToUpdate) {
+            return new Book(author.value, title.value, length.value, yesInput.checked);
+        } else {
+            return book;
+        }
+    });
 }
 
 function createFakeData() {
@@ -31,6 +48,8 @@ function setUpEditButton(bookCard) {
         // Populate form with book's information
         resetForm("edit");
         populateForm(bookCard);
+        // Save the current book's title for later updates
+        bookTitleToUpdate = bookCard.querySelector(".book-title").textContent;
     });
 }
 
@@ -378,6 +397,14 @@ const updateButton = document.querySelector("#edit-book-form .update");
 updateButton.addEventListener("click", event => {
     event.preventDefault();
     let isValidForm = validateForm("edit");
+    if (isValidForm) {
+        // Update book
+        updateBookToLibrary();
+        const editBookPopup = document.querySelector("#edit-book-popup");
+        editBookPopup.close();
+        displayBooks(myLibrary);
+        updateSummary();
+    }
 })
 
 // When user clicks cancel button in edit book form
@@ -387,6 +414,7 @@ cancelUpdateButton.addEventListener("click", event => {
     const editBookPopup = document.querySelector("#edit-book-popup");
     editBookPopup.close();
 })
+
 
 
 
