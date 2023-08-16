@@ -467,6 +467,13 @@ deleteButton.addEventListener("click", () => {
     updateSummary();
 });
 
+// When user clicks cancel button in delete popup
+const cancelDeleteButton = document.querySelector("#delete-book-popup .cancel");
+cancelDeleteButton.addEventListener("click", () => {
+    const deleteBookPopup = document.querySelector("#delete-book-popup");
+    deleteBookPopup.close();
+});
+
 
 
 
