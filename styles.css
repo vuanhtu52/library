@@ -413,3 +413,62 @@ dialog::backdrop {
 }
 /* END OF FORMS */
 
+#delete-book-popup {
+    padding: 20px 40px;
+    border-radius: 10px;
+    border: 2px solid #a16207;
+    width: 200px;
+}
+
+#delete-book-popup > :first-child {
+    font-size: 20px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#delete-book-popup > :nth-child(2) {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#delete-book-popup > :nth-child(3) {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#delete-book-popup button {
+    font-size: 20px;
+    width: 100px;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+
+#delete-book-popup button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#delete-book-popup button:active {
+    transform: translateY(2px);
+}
+
+#delete-book-popup button.delete {
+    background-color: #a16207;
+    color: white;
+    border: none;
+}
+
+#delete-book-popup button.cancel {
+    background-color: white;
+    color: #a16207;
+    border: 1px solid #a16207;
+} 
+
+
+
+
+

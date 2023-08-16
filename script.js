@@ -72,6 +72,16 @@ function setUpToggle(bookCard) {
     });
 }
 
+function setUpDeleteButton(bookCard) {
+    // When user clicks on delete button
+    const deleteButton = bookCard.querySelector(".delete");
+    deleteButton.addEventListener("click", () => {
+        console.log("hello");
+        const deleteBookPopup = document.querySelector("#delete-book-popup");
+        deleteBookPopup.showModal();
+    });
+}
+
 function createBookCard(book) {
     // Clone the book card template
     const template = document.querySelector(".book-card");
@@ -98,6 +108,8 @@ function createBookCard(book) {
     setUpEditButton(bookCard.lastElementChild);
     // Set up toggle
     setUpToggle(bookCard.lastElementChild);
+    // Set up delete button
+    setUpDeleteButton(bookCard.lastElementChild);
 
     return bookCard;
 }

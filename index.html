@@ -139,14 +139,16 @@
                 </div>
             </div>
             <div class="form-buttons">
-                <button class="add"><div>Add</div></button>
+                <button class="add">
+                    <div>Add</div>
+                </button>
                 <button class="cancel">Cancel</button>
-            </div> 
+            </div>
         </form>
     </dialog>
 
-     <!-- The popup form to edit book -->
-     <dialog id="edit-book-popup">
+    <!-- The popup form to edit book -->
+    <dialog id="edit-book-popup">
         <div>Edit Book</div>
         <form action="#" method="post" id="edit-book-form" novalidate>
             <div class="form-field">
@@ -179,10 +181,22 @@
                 </div>
             </div>
             <div class="form-buttons">
-                <button class="update"><div>Update</div></button>
+                <button class="update">
+                    <div>Update</div>
+                </button>
                 <button class="cancel">Cancel</button>
-            </div> 
+            </div>
         </form>
+    </dialog>
+
+    <!-- The popup to delete book -->
+    <dialog id="delete-book-popup">
+        <div>Delete this book?</div>
+        <div>Book title</div>
+        <div>
+            <button class="delete">Delete</button>
+            <button class="cancel">Cancel</button>
+        </div>
     </dialog>
 </body>
 
