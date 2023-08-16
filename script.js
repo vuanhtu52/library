@@ -74,7 +74,7 @@ function displayBooks() {
     }
 }
 
-function resetNewBookForm() {
+function resetForm() {
     // Reset title
     const titleInput = document.querySelector("#title");
     titleInput.className = "";
@@ -98,6 +98,8 @@ function resetNewBookForm() {
     yesInput.checked = false;
     const noInput = document.querySelector("#no");
     noInput.checked = false;
+    const readStatusInputError = document.querySelector("#new-book-form > .form-field:nth-child(4) > span");
+    readStatusInputError.textContent = "";
 }
 
 function validateForm(formType) {
@@ -120,7 +122,6 @@ function validateForm(formType) {
     }
 
     // Check if author is empty
-    // const authorInput = document.querySelector("#author");
     let authorInput;
     if (formType === "add") {
         authorInput = document.querySelector("#author");
@@ -266,7 +267,6 @@ function populateForm(bookCard) {
     }
 }
 
-
 createFakeData();
 displayBooks();
 updateSummary();
@@ -280,7 +280,7 @@ addBookButton.addEventListener("click", () => {
     const body = document.querySelector("body");
     body.style.overflow = "hidden";
     // Reset the fields
-    resetNewBookForm();
+    resetForm();
 });
 
 // Detect when popup is closed
