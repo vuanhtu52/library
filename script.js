@@ -2,12 +2,14 @@ let myLibrary = [];
 let bookTitleToUpdate = "";
 let bookTitleToDelete = "";
 
-function Book(author, title, numPage, read) {
-    // the constructor...
-    this.author = author;
-    this.title = title;
-    this.numPage = numPage;
-    this.read = read;
+class Book {
+    constructor(author, title, numPage, read) {
+        // the constructor...
+        this.author = author;
+        this.title = title;
+        this.numPage = numPage;
+        this.read = read;
+    }
 }
 
 function addBookToLibrary(book) {
